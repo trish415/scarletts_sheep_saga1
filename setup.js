@@ -11,7 +11,7 @@ function initializePlatforms(){
     var bottom = platforms.create(0, game.world.height - PLATFORM_HEIGHT, 'platform');
     bottom.scale.setTo(2,1);
     var middleR = platforms.create(0.5*game.world.width, game.world.height - 5*PLATFORM_HEIGHT, 'platform');
-    middleR.scale.setTo(0.75, 1);
+    middleR.scale.setTo(1, 1);
     var top = platforms.create(0, game.world.height - 9*PLATFORM_HEIGHT, 'platform');
     platforms.forEach(function(item){
         item.body.immovable = true;

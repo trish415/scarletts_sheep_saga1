@@ -13,6 +13,7 @@ var background;
 var platforms;
 var PLATFORM_HEIGHT = 32;
 var sheep;
+var numSheep = 10;
 var cursors;
 
 function create(){
@@ -20,37 +21,19 @@ function create(){
     initializeBackground();
     initializePlatforms();
     game.physics.enable(Phaser.Physics.ARCADE);
-    //add sheep
-    sheep = new Sheep(game,32,game.world.height- 5*PLATFORM_HEIGHT, 'sheep');
-    sheep.body.bounce.y = 0.2;
-    sheep.body.gravity.y = 150;
-    sheep.body.collideWorldBounds = true;
+    //add sheep randomly
+    sheep = game.add.group();
+    for (var i = 0; i < numSheep; i++){
+        var s = new Sheep(game);
+        s.body.bounce.y = 0.2;
+        s.body.gravity.y = 150;
+        s.body.collideWorldBounds = true;
+    }
     //add controls
     cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update() {
-    game.physics.arcade.collide(sheep, platforms);
-    //use cursors to test sheep animation
-    sheep.body.velocity.x = 0;
-    if(cursors.left.isDown)
-    {
-        sheep.body.velocity.x = -100;
-        sheep.animations.play('left');
-    }
-    else if (cursors.right.isDown)
-    {
-        sheep.body.velocity.x = 100;
-        sheep.animations.play('right');
-    }
-    else
-    {
-        sheep.animations.stop();
-    }
 
-    if(cursors.up.isDown)
-    {
-        sheep.body.velocity.y = -150;
-    }
 }
 
