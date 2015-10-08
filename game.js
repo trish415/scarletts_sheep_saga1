@@ -6,16 +6,18 @@ function preload() {
     //load art
     game.load.image('background', 'art/background.png');
     game.load.spritesheet('player', 'art/dude.png', 32, 48);
+    game.load.image('platform', 'art/platform.png');
 }
 
-var background;
+var PLATFORM_HEIGHT = 32;
 
 function create(){
     //set background
-    background = game.add.sprite(0,0,'background');
-    background.scale.set(0.5,0.5);
     player = new Player(game, 100, 400); 
     cursors = game.input.keyboard.createCursorKeys();
+    //setup
+    initializeBackground();
+    initializePlatforms();
 
 }
 
