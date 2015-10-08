@@ -1,6 +1,7 @@
 var boundsX = 800, boundsY = 600;
 var game = new Phaser.Game(boundsX, boundsY, Phaser.AUTO, "game", {preload:preload, update:update, create:create});
 var player;
+var platforms;
 
 function preload() {
     //load art
@@ -12,12 +13,11 @@ function preload() {
 var PLATFORM_HEIGHT = 32;
 
 function create(){
-    //set background
-    player = new Player(game, 100, 400); 
-    cursors = game.input.keyboard.createCursorKeys();
     //setup
     initializeBackground();
     initializePlatforms();
+    player = new Player(game, 100, 400); 
+    cursors = game.input.keyboard.createCursorKeys();
 
 }
 
