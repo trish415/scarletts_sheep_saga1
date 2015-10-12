@@ -26,6 +26,13 @@ function Sheep(game,x,y) {
     this.rightLim = rightLims[this.g];
     // set position
     this.x = sheepWidths[this.g];
+    //remove bug where sheep starting in middle spaz on the top platform
+    if ((this.x >= 350) && (this.x <= 400)){
+        this.x = this.x - 100;
+    }
+    else if ((this.x >= 400) && (this.x <=450)){
+        this.x = this.x + 100;
+    }
     this.y = this.game.world.height - sheepHeights[this.g];
     // get a random speed
     this.dx = Math.floor(Math.random()*3) + 1;
