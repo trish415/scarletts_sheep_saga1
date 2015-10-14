@@ -1,0 +1,142 @@
+{ "height":10,
+ "layers":[
+        {
+         "data":[100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194],
+         "height":10,
+         "name":"Background",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":12,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 300, 300, 301, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 325, 300, 300, 300, 300, 300, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300],
+         "height":10,
+         "name":"Platforms",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":12,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "height":10,
+         "name":"Object Layer 1",
+         "objects":[
+                {
+                 "gid":353,
+                 "height":40,
+                 "id":12,
+                 "name":"",
+                 "properties":
+                    {
+
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":49,
+                 "x":598,
+                 "y":352
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "width":12,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 288, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 288, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "name":"PlatformEdges",
+         "opacity":0,
+         "type":"tilelayer",
+         "visible":true,
+         "width":12,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":13,
+ "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
+ "renderorder":"right-down",
+ "tileheight":70,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"..\/..\/..\/..\/Users\/Patricia\/Documents\/2015 Senior Year\/Game Dev\/Buildings expansion\/sheet.png",
+         "imageheight":490,
+         "imagewidth":980,
+         "margin":0,
+         "name":"buildings",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":98,
+         "tileheight":70,
+         "tilewidth":70
+        }, 
+        {
+         "firstgid":99,
+         "image":"..\/..\/..\/..\/Users\/Patricia\/Documents\/2015 Senior Year\/Game Dev\/Mushroom expansion\/Backgrounds\/bg_grasslands.png",
+         "imageheight":512,
+         "imagewidth":1024,
+         "margin":0,
+         "name":"bg_grasslands",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":98,
+         "tileheight":70,
+         "tilewidth":70
+        }, 
+        {
+         "firstgid":197,
+         "image":"..\/..\/..\/..\/Users\/Patricia\/Documents\/2015 Senior Year\/Game Dev\/Base pack\/Tiles\/tiles_spritesheet.png",
+         "imageheight":910,
+         "imagewidth":840,
+         "margin":0,
+         "name":"tiles_spritesheet",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":156,
+         "tileheight":70,
+         "tilewidth":70,
+         "transparentcolor":"#ffffff"
+        }, 
+        {
+         "firstgid":353,
+         "image":"sheepys.png",
+         "imageheight":80,
+         "imagewidth":196,
+         "margin":0,
+         "name":"sheepys",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":40,
+         "tilewidth":49,
+         "transparentcolor":"#ffffff"
+        }],
+ "tilewidth":70,
+ "version":1,
+ "width":12
+}
