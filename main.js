@@ -1,6 +1,6 @@
 var SSSP1 = SSSP1 || {};
-var boundsx = 800;
-var boundsy = 600;
+var boundsx = 840;
+var boundsy = 700;
 
 //create game and define states
 SSSP1.game = new Phaser.Game(boundsx, boundsy, Phaser.AUTO, '');
