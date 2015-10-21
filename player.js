@@ -23,7 +23,7 @@ Player.prototype.update = function() {
     this.body.velocity.x = 0;
     this.body.velocity.y = 0;
     if (this.cursors.left.isDown) {
-        console.log("here");
+        // console.log("here");
         this.body.velocity.x = -150;
         this.animations.play('left');
     }
@@ -32,10 +32,10 @@ Player.prototype.update = function() {
         this.animations.play('right');
     }
     else {
-        console.log("stop");
+        // console.log("stop");
         this.animations.stop();
     }
-    console.log(this.body.blocked.down);
+    // console.log(this.body.blocked.down);
     if (this.cursors.up.isDown && this.body.blocked.down) {
     //if (this.cursors.up.isDown) {
         console.log("touch");

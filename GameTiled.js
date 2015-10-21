@@ -23,7 +23,6 @@ SSSP1.Game.prototype = {
         this.sheepGroup = this.game.add.group();
         this.sheepGroup.enableBody = true;
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.player = new Player(this.game, 0, 0, this.cursors); 
         var result = this.findObjectsByType('sheep', this.map, 'SheepLayer');
         result.forEach(function(element){
             var s = new Sheep(this.game, element.x, element.y);
@@ -32,14 +31,22 @@ SSSP1.Game.prototype = {
             s.body.collideWorldBounds = true;
             this.sheepGroup.add(s);
         }, this);
+
+        this.dragonGroup = this.game.add.group();
+        this.dragonGroup.enableBody = true;
+        var d = new Dragon(this.game, 50, 50);
+        d.body.collideWorldBounds = true;
+        d.body.gravity.y = 150;
+        this.dragonGroup.add(d);
+        this.player = new Player(this.game, 0, 0, this.cursors); 
     },
 
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platformLayer);
+        this.game.physics.arcade.collide(this.dragonGroup, this.platformLayer, this.dragonLanding);
         this.game.physics.arcade.TILE_BIAS = 1000;
         this.game.physics.arcade.collide(this.sheepGroup, this.platformEdgeLayer, this.reverseDirection);
         this.game.physics.arcade.collide(this.sheepGroup, this.platformLayer);
-
     },
     findObjectsByType: function(type, map, layerName) {
         var result = new Array();
@@ -53,6 +60,21 @@ SSSP1.Game.prototype = {
     },
     reverseDirection:function(s,p){
         s.dx = s.dx*-1;
+    },
+    dragonLanding:function(d,p){
+        console.log(d.hasLanded);
+        if (d.hasLanded == false){
+            console.log('firstland');
+            d.hasLanded = true;
+            d.dy = 0;
+            var direction = Math.floor(Math.random()*2);
+            if (direction == 0){
+                d.dx = d.speed;
+            }
+            else{
+                d.dx = -1*d.speed;
+            }
+        }
     }
 
 
