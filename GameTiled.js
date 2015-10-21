@@ -31,11 +31,16 @@ SSSP1.Game.prototype = {
             s.body.collideWorldBounds = true;
             this.sheepGroup.add(s);
         }, this);
-        this.heart1 = this.game.add.sprite(0, 0, 'heartFull');
-        this.heart2 = this.game.add.sprite(60, 0, 'heartFull');
-        this.heart3 = this.game.add.sprite(120, 0, 'heartFull');
-        this.heart4 = this.game.add.sprite(180, 0, 'heartFull');
-        this.heart5 = this.game.add.sprite(240, 0, 'heartFull');
+        this.heart1 = this.game.add.sprite(10, 10, 'heartFull');
+        this.heart2 = this.game.add.sprite(45, 10, 'heartFull');
+        this.heart3 = this.game.add.sprite(80, 10, 'heartFull');
+        this.heart4 = this.game.add.sprite(115, 10, 'heartFull');
+        this.heart5 = this.game.add.sprite(150, 10, 'heartFull');
+        this.heart1.scale.setTo(0.6);
+        this.heart2.scale.setTo(0.6);
+        this.heart3.scale.setTo(0.6);
+        this.heart4.scale.setTo(0.6);
+        this.heart5.scale.setTo(0.6);
     },
 
     update: function() {
