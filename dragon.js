@@ -1,8 +1,7 @@
 Dragon.prototype = Object.create(Phaser.Sprite.prototype);
 Dragon.prototype.constructor = Dragon;
 
-// Dragon.prototype.landingX = 0;
-// Dragon.prototype.landingY = 0;
+Dragon.prototype.landingX = 0;
 Dragon.prototype.speed = 3;
 Dragon.prototype.hasSheep = false;
 Dragon.prototype.hasLanded = false;
@@ -28,20 +27,9 @@ function Dragon(game, x, y){
         this.dx = -1* this.speed;
         this.frame = 4;
     }
-    // this.x = 400;
     //for now fixed y starting position
     this.y = 50;
 
-
-    // this.landingX = Math.floor(Math.random()*(this.game.width-50));
-    // if (this.landingX <= 350) {
-        //going to top platform
-        // this.landingY = game.world.height - 9*PLATFORM_HEIGHT;
-    // }
-    // else{
-        //second platform
-        // this.landingY = game.world.height - 5*PLATFORM_HEIGHT;
-    // }
     //set physics and add to game
     game.physics.enable(this, Phaser.Physics.ARCADE);
     game.add.existing(this);
@@ -66,10 +54,7 @@ Dragon.prototype.update = function(){
         this.x = this.x + this.dx;
     }
 
-    // set animations
-    // if (this.dx == 0){
-        // this.animations.stop();
-    // }
+
     if (this.dx > 0){
         this.animations.play('right');
     }
@@ -77,6 +62,4 @@ Dragon.prototype.update = function(){
         this.animations.play('left');
     }
 
-    // this.x = this.x + (this.landingX - this.x)/30;
-    // this.y = this.y + (this.landingY - this.y)/30;
 }

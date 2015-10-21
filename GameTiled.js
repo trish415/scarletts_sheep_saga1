@@ -52,6 +52,7 @@ SSSP1.Game.prototype = {
         this.game.physics.arcade.TILE_BIAS = 1000;
         this.game.physics.arcade.collide(this.sheepGroup, this.platformEdgeLayer, this.reverseDirection);
         this.game.physics.arcade.collide(this.sheepGroup, this.platformLayer);
+        this.game.physics.arcade.overlap(this.sheepGroup, this.dragonGroup, this.grabSheep);
         console.log(this.player.health);
         if (this.player.health <= 8) {
             this.heart5.kill();
@@ -98,6 +99,17 @@ SSSP1.Game.prototype = {
             else{
                 d.dx = -1*d.speed;
             }
+        }
+    },
+    grabSheep:function(s,d){
+        if (d.hasSheep == false){
+            d.hasSheep = true;
+            s.captured = true;
+        }
+        if(s.captured == true){
+            s.x = d.x;
+            s.y = d.y;
+            s.animations.stop();
         }
     }
 

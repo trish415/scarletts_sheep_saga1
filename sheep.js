@@ -2,6 +2,7 @@ Sheep.prototype = Object.create(Phaser.Sprite.prototype);
 Sheep.prototype.constructor = Sheep;
 
 Sheep.prototype.dx = 0;
+Sheep.prototype.captured = false;
 
 function Sheep(game,x,y) {
 
@@ -32,4 +33,5 @@ Sheep.prototype.update = function(){
         this.animations.play('left');
     }
     this.x = this.x + this.dx;
+
 }
