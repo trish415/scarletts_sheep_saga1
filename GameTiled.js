@@ -3,7 +3,6 @@ var SSSP1 = SSSP1 || {};
 SSSP1.Game = function(){};
 SSSP1.Game.prototype = {
     preload: function() {
-
     },
     create: function() {
         // add tilemap
@@ -32,6 +31,11 @@ SSSP1.Game.prototype = {
             s.body.collideWorldBounds = true;
             this.sheepGroup.add(s);
         }, this);
+        this.heart1 = this.game.add.sprite(0, 0, 'heartFull');
+        this.heart2 = this.game.add.sprite(60, 0, 'heartFull');
+        this.heart3 = this.game.add.sprite(120, 0, 'heartFull');
+        this.heart4 = this.game.add.sprite(180, 0, 'heartFull');
+        this.heart5 = this.game.add.sprite(240, 0, 'heartFull');
     },
 
     update: function() {
@@ -39,6 +43,23 @@ SSSP1.Game.prototype = {
         this.game.physics.arcade.TILE_BIAS = 1000;
         this.game.physics.arcade.collide(this.sheepGroup, this.platformEdgeLayer, this.reverseDirection);
         this.game.physics.arcade.collide(this.sheepGroup, this.platformLayer);
+        console.log(this.player.health);
+        if (this.player.health <= 8) {
+            this.heart5.kill();
+        }
+        if (this.player.health <= 6) {
+            this.heart4.kill();
+        }
+        if (this.player.health <= 4) {
+            this.heart3.kill();
+        }
+        if (this.player.health <= 2) {
+            this.heart2.kill();
+        }
+        if (this.player.health <= 0) {
+            this.heart1.kill();
+        }
+
 
     },
     findObjectsByType: function(type, map, layerName) {

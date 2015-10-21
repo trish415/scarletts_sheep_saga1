@@ -12,6 +12,7 @@ SSSP1.Preload.prototype = {
         this.load.image('backTiles', 'art/bg_grasslands.png');
         this.load.spritesheet('player', 'art/dude.png', 32, 48);
         this.load.spritesheet('sheep','art/sheepys.png', 49, 40);
+        this.load.image('heartFull', 'art/heartFull.png');
     },
     create:function(){
         this.state.start('Game');
