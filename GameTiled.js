@@ -22,6 +22,9 @@ SSSP1.Game.prototype = {
         //add sprites
         this.sheepGroup = this.game.add.group();
         this.sheepGroup.enableBody = true;
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.platformEdges = this.map.createLayer('PlatformEdges');
+        this.player = new Player(this.game, 0, 0, this.cursors); 
         // this.sheepGroup.body.collideWorldBounds = true;
         var result = this.findObjectsByType('sheep', this.map, 'SheepLayer');
         result.forEach(function(element){
@@ -32,11 +35,10 @@ SSSP1.Game.prototype = {
             this.sheepGroup.add(s);
             // this.createFromTiledObject(element, this.sheepGroup);
         }, this);
-        this.platformEdges = this.map.createLayer('PlatformEdges');
         this.map.setCollisionBetween(1, 200, true, this.platformEdges);
     },
     update: function() {
-
+        this.game.physics.arcade.collide(this.player, this.platformLayer);
     },
     findObjectsByType: function(type, map, layerName) {
         var result = new Array();
