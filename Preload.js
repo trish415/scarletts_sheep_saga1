@@ -14,6 +14,7 @@ SSSP1.Preload.prototype = {
         this.load.spritesheet('sheep','art/sheepys.png', 49, 40);
         this.load.spritesheet('dragon', 'art/DragonyDragon.png',145, 103);
         this.load.image('heartFull', 'art/heartFull.png');
+        this.load.spritesheet('fire', 'art/fireball.png', 64, 64);
 
     },
     create:function(){

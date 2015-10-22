@@ -1,6 +1,8 @@
 var SSSP1 = SSSP1 || {};
 
 SSSP1.Game = function(){};
+var delay = 0;
+var justFired = false;
 SSSP1.Game.prototype = {
     preload: function() {
     },
@@ -40,6 +42,8 @@ SSSP1.Game.prototype = {
         this.dragonGroup.add(d);
         this.player = new Player(this.game, 0, 0, this.cursors); 
 
+        this.fireGroup = this.game.add.group();
+        this.fireGroup.enableBody = true;
         this.heart1 = this.game.add.sprite(10, 10, 'heartFull');
         this.heart2 = this.game.add.sprite(45, 10, 'heartFull');
         this.heart3 = this.game.add.sprite(80, 10, 'heartFull');
@@ -75,6 +79,20 @@ SSSP1.Game.prototype = {
         }
         if (this.player.health <= 0) {
             this.heart1.kill();
+        }
+        if (justFired == true) {
+            delay = delay + 1;
+        }
+        if (delay >= 20){
+            justFired = false;
+            delay = 0;
+        }
+        if ((this.cursors.down.isDown) && (justFired == false)){
+            justFired = true;
+            var f = new Fireball(this.game, this.player.x, this.player.y, this.player.direction);
+            f.body.gravity.y = 0;
+            this.fireGroup.add(f);
+
         }
 
 

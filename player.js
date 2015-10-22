@@ -3,6 +3,7 @@ Player.prototype = Object.create(Phaser.Sprite.prototype);
 Player.prototype.constructor = Player;
 
 Player.prototype.force = {x:0.0, y:0.0};
+Player.prototype.direction = 1;
 
 function Player(game, x, y, cursors) {
     Phaser.Sprite.call(this, game, x, y, 'player');
@@ -26,10 +27,12 @@ Player.prototype.update = function() {
     if (this.cursors.left.isDown) {
         this.body.velocity.x = -250;
         this.animations.play('left');
+        this.direction = -1;
     }
     else if (this.cursors.right.isDown) {
         this.body.velocity.x = 250;
         this.animations.play('right');
+        this.direction = 1;
     }
     else {
 
