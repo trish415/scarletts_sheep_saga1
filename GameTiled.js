@@ -18,6 +18,9 @@ SSSP1.Game.prototype = {
         this.map.setCollisionBetween(1, 300, true, this.platformEdgeLayer);
         //set game dimensions
         this.backgroundLayer.resizeWorld();
+        //add music
+        this.music = this.game.add.audio('backMusic');
+        this.music.play();
         //add sprites
         this.sheepGroup = this.game.add.group();
         this.sheepGroup.enableBody = true;
@@ -39,7 +42,9 @@ SSSP1.Game.prototype = {
         d.body.gravity.y = 150;
         this.dragonGroup.add(d);
         this.player = new Player(this.game, 0, 0, this.cursors); 
+        this.player.scale.setTo(1.4);
 
+        //add hearts
         this.heart1 = this.game.add.sprite(10, 10, 'heartFull');
         this.heart2 = this.game.add.sprite(45, 10, 'heartFull');
         this.heart3 = this.game.add.sprite(80, 10, 'heartFull');
@@ -60,21 +65,21 @@ SSSP1.Game.prototype = {
         this.game.physics.arcade.collide(this.sheepGroup, this.platformEdgeLayer, this.reverseDirection);
         this.game.physics.arcade.collide(this.sheepGroup, this.platformLayer);
         this.game.physics.arcade.overlap(this.sheepGroup, this.dragonGroup, this.grabSheep);
-        console.log(this.player.health);
-        if (this.player.health <= 8) {
+        if (this.player.health <= 4) {
             this.heart5.kill();
         }
-        if (this.player.health <= 6) {
+        if (this.player.health <= 3) {
             this.heart4.kill();
         }
-        if (this.player.health <= 4) {
+        if (this.player.health <= 2) {
             this.heart3.kill();
         }
-        if (this.player.health <= 2) {
+        if (this.player.health <= 1) {
             this.heart2.kill();
         }
         if (this.player.health <= 0) {
             this.heart1.kill();
+            //game over will go here
         }
 
 
