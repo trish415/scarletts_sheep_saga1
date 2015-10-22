@@ -29,6 +29,8 @@ SSSP1.Game.prototype = {
         this.sheepGroup = this.game.add.group();
         this.sheepGroup.enableBody = true;
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.score = 0;
+        this.scoreText = this.game.add.text(675, 10, 'Points: 0', {font: '24px Arial', fill: '#FFFFFF'}); 
         var result = this.findObjectsByType('sheep', this.map, 'SheepLayer');
         result.forEach(function(element){
             var s = new Sheep(this.game, element.x, element.y);
@@ -75,6 +77,7 @@ SSSP1.Game.prototype = {
         this.game.physics.arcade.overlap(this.player, this.dragonGroup, this.hitPlayer);
         if (this.player.health <= 4) {
             this.heart5.kill();
+            this.score += 10;
         }
         if (this.player.health <= 3) {
             this.heart4.kill();
@@ -112,7 +115,7 @@ SSSP1.Game.prototype = {
 
         }
 
-
+        this.scoreText.setText('Points: '+this.score);
 
     },
     findObjectsByType: function(type, map, layerName) {
