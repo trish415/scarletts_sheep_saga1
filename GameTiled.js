@@ -1,10 +1,16 @@
 var SSSP1 = SSSP1 || {};
 
 SSSP1.Game = function(){};
+
+//globals for delay
 var delay = 0;
 var healthDelay = 0;
 var justHit = false;
 var justFired = false;
+var dragonSpawned = true;
+var dragonDelay = 0;
+var dragonSpawnSpeed = 150;
+
 SSSP1.Game.prototype = {
     preload: function() {
     },
@@ -25,12 +31,14 @@ SSSP1.Game.prototype = {
         //add music
         this.music = this.game.add.audio('backMusic');
         this.music.play();
-        //add sprites
+        //add sheep
         this.sheepGroup = this.game.add.group();
         this.sheepGroup.enableBody = true;
+        //cursors for player control
         this.cursors = this.input.keyboard.createCursorKeys();
         this.score = 0;
         this.scoreText = this.game.add.text(675, 10, 'Points: 0', {font: '24px Arial', fill: '#FFFFFF'}); 
+        //grab sheep from tiled map
         var result = this.findObjectsByType('sheep', this.map, 'SheepLayer');
         result.forEach(function(element){
             var s = new Sheep(this.game, element.x, element.y);
@@ -40,18 +48,18 @@ SSSP1.Game.prototype = {
             this.sheepGroup.add(s);
         }, this);
 
-
+        //set up dragon group
         this.dragonGroup = this.game.add.group();
         this.dragonGroup.enableBody = true;
-        var d = new Dragon(this.game, 50, 50);
-        d.body.collideWorldBounds = true;
-        d.body.gravity.y = 150;
-        this.dragonGroup.add(d);
+
+        //add player
         this.player = new Player(this.game, 0, 0, this.cursors); 
         this.player.scale.setTo(1.4);
 
+        //set up fire group
         this.fireGroup = this.game.add.group();
         this.fireGroup.enableBody = true;
+
         //add hearts
         this.heart1 = this.game.add.sprite(10, 10, 'heartFull');
         this.heart2 = this.game.add.sprite(45, 10, 'heartFull');
@@ -67,6 +75,7 @@ SSSP1.Game.prototype = {
     },
 
     update: function() {
+        //set up all collisions
         this.game.physics.arcade.collide(this.player, this.platformLayer);
         this.game.physics.arcade.collide(this.dragonGroup, this.platformLayer, this.dragonLanding);
         this.game.physics.arcade.TILE_BIAS = 1000;
@@ -75,6 +84,8 @@ SSSP1.Game.prototype = {
         this.game.physics.arcade.overlap(this.sheepGroup, this.dragonGroup, this.grabSheep);
         this.game.physics.arcade.overlap(this.dragonGroup, this.fireGroup, this.hitDragon);
         this.game.physics.arcade.overlap(this.player, this.dragonGroup, this.hitPlayer);
+        
+        // update health display
         if (this.player.health <= 4) {
             this.heart5.kill();
             this.score += 10;
@@ -90,16 +101,21 @@ SSSP1.Game.prototype = {
         }
         if (this.player.health <= 0) {
             this.heart1.kill();
-            //game over will go here
+            //if pleyer dies, game over
+            SSSP1.game.state.start("GameOver");
         }
+
+        //  delay for player taking hits from dragon
         if (justHit == true) {
             healthDelay += 1;
-            console.log(healthDelay);
+
         }
         if (healthDelay >= 50){
             justHit = false;
             healthDelay = 0;
         }
+
+        // delay for sending fireballs
         if (justFired == true) {
             delay = delay + 1;
         }
@@ -108,6 +124,7 @@ SSSP1.Game.prototype = {
             delay = 0;
         }
         if ((this.cursors.down.isDown) && (justFired == false)){
+            // if able, send fireball
             justFired = true;
             var f = new Fireball(this.game, this.player.x, this.player.y, this.player.direction);
             f.body.gravity.y = 0;
@@ -115,10 +132,24 @@ SSSP1.Game.prototype = {
 
         }
 
+        // delay for dragon spawning
+        if (dragonSpawned == true){
+            dragonDelay += 1;
+        }
+        if (dragonDelay >= dragonSpawnSpeed){   
+            //if time, spawn dragon
+            var d = new Dragon(this.game, 50, 50);
+            d.body.collideWorldBounds = true;
+            d.body.gravity.y = 150;
+            this.dragonGroup.add(d);
+            dragonDelay = 0;
+        }
+
         this.scoreText.setText('Points: '+this.score);
 
     },
     findObjectsByType: function(type, map, layerName) {
+        // get objects from tiled
         var result = new Array();
         map.objects[layerName].forEach(function(element){
             if (element.properties.type == type){
@@ -128,9 +159,13 @@ SSSP1.Game.prototype = {
         });
         return result;
     },
+
+    //sheep reverse direction when collide with platform edges
     reverseDirection:function(s,p){
         s.dx = s.dx*-1;
     },
+
+    //when dragon lands, left or right is chosen randomly
     dragonLanding:function(d,p){
         console.log(d.hasLanded);
         if (d.hasLanded == false){
@@ -145,11 +180,11 @@ SSSP1.Game.prototype = {
             }
         }
     },
+    //when dragons collide with sheep, they pick them up
     grabSheep:function(s,d){
         if (d.hasSheep == false){
             d.hasSheep = true;
             s.captured = true;
-            // s.dragony = d;
             d.sheepy = s;
         }
         if(s.captured == true){
@@ -158,6 +193,9 @@ SSSP1.Game.prototype = {
             s.animations.stop();
         }
     },
+
+    // when dragon gets hit, decrease dragon hp and kill if applicable
+    // also free the sheep
     hitDragon:function(d, f){
         f.kill();
         d.hits = d.hits + 1;
@@ -166,12 +204,13 @@ SSSP1.Game.prototype = {
             d.kill();
         }
     },
+    // when dragon hits player, decrease player hp
     hitPlayer:function(p,d){
         if(justHit == false){
             justHit = true;
             p.health -=1;
         }
-        //if pleyer dies, game over
+
     }
 
 

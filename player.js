@@ -36,7 +36,6 @@ Player.prototype.update = function() {
         this.animations.stop();
     }
     if (this.cursors.up.isDown && this.body.blocked.down) {
-        // this.health -= 1;
         this.body.velocity.y = -600;
     }
 }

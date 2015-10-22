@@ -8,12 +8,11 @@ Sheep.prototype.captured = false;
 function Sheep(game,x,y) {
 
     Phaser.Sprite.call(this, game, x, y, 'sheep');
-    // this.dragony = new Dragon(game, x, y);
-    // this.dragony.kill();
     // setup animations
     this.frame = Math.floor(Math.random()*7);
     this.animations.add('left', [0,1,2,3], 10,true);
     this.animations.add('right', [4,5,6,7], 10, true);
+    //sizing
     this.scale.setTo(1.25);
     // get a random speed
     this.dx = Math.floor(Math.random()*3) + 1;

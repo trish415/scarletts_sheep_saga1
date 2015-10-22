@@ -7,6 +7,7 @@ SSSP1.game = new Phaser.Game(boundsx, boundsy, Phaser.AUTO, '');
 SSSP1.game.state.add('Boot', SSSP1.Boot);
 SSSP1.game.state.add('Preload', SSSP1.Preload);
 SSSP1.game.state.add('Game', SSSP1.Game);
+SSSP1.game.state.add('GameOver', SSSP1.GameOver);
 
 //start with the boot state
 SSSP1.game.state.start('Boot');

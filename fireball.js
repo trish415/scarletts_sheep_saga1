@@ -14,6 +14,7 @@ function Fireball(game, x, y, d){
 }
 
 Fireball.prototype.update = function(){
+    //choose direction of animation
     if (this.dx == -1){
         this.animations.play('left');
     }
