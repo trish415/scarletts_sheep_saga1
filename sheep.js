@@ -4,9 +4,12 @@ Sheep.prototype.constructor = Sheep;
 Sheep.prototype.dx = 0;
 Sheep.prototype.captured = false;
 
+
 function Sheep(game,x,y) {
 
     Phaser.Sprite.call(this, game, x, y, 'sheep');
+    // this.dragony = new Dragon(game, x, y);
+    // this.dragony.kill();
     // setup animations
     this.frame = Math.floor(Math.random()*7);
     this.animations.add('left', [0,1,2,3], 10,true);
