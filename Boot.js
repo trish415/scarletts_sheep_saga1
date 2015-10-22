@@ -5,7 +5,7 @@ SSSP1.Boot = function(){};
 SSSP1.Boot.prototype = {
     preload: function(){
         //assets for loading screen
-        this.load.image('background', 'art/background.png');
+        this.load.image('background', 'art/CHICKENS.png');
     },
     create: function(){
         //set up preload screen

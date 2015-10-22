@@ -2,6 +2,8 @@ var SSSP1 = SSSP1 || {};
 
 SSSP1.Game = function(){};
 var delay = 0;
+var healthDelay = 0;
+var justHit = false;
 var justFired = false;
 SSSP1.Game.prototype = {
     preload: function() {
@@ -69,6 +71,8 @@ SSSP1.Game.prototype = {
         this.game.physics.arcade.collide(this.sheepGroup, this.platformEdgeLayer, this.reverseDirection);
         this.game.physics.arcade.collide(this.sheepGroup, this.platformLayer);
         this.game.physics.arcade.overlap(this.sheepGroup, this.dragonGroup, this.grabSheep);
+        this.game.physics.arcade.overlap(this.dragonGroup, this.fireGroup, this.hitDragon);
+        this.game.physics.arcade.overlap(this.player, this.dragonGroup, this.hitPlayer);
         if (this.player.health <= 4) {
             this.heart5.kill();
         }
@@ -84,6 +88,14 @@ SSSP1.Game.prototype = {
         if (this.player.health <= 0) {
             this.heart1.kill();
             //game over will go here
+        }
+        if (justHit == true) {
+            healthDelay += 1;
+            console.log(healthDelay);
+        }
+        if (healthDelay >= 50){
+            justHit = false;
+            healthDelay = 0;
         }
         if (justFired == true) {
             delay = delay + 1;
@@ -142,6 +154,21 @@ SSSP1.Game.prototype = {
             s.y = d.y;
             s.animations.stop();
         }
+    },
+    hitDragon:function(d, f){
+        f.kill();
+        d.hits = d.hits + 1;
+        if (d.hits == 3){
+            d.sheepy.captured = false;
+            d.kill();
+        }
+    },
+    hitPlayer:function(p,d){
+        if(justHit == false){
+            justHit = true;
+            p.health -=1;
+        }
+        //if pleyer dies, game over
     }
 
 

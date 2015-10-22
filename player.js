@@ -4,11 +4,11 @@ Player.prototype.constructor = Player;
 
 Player.prototype.force = {x:0.0, y:0.0};
 Player.prototype.direction = 1;
+Player.prototype.health = 5;
 
 function Player(game, x, y, cursors) {
     Phaser.Sprite.call(this, game, x, y, 'player');
     this.frame = 0;
-    this.health = 10;
     game.physics.enable(this, Phaser.Physics.ARCADE);
     this.body.bounce.y = 0.2;
     this.body.gravity.y = 700;
@@ -36,7 +36,7 @@ Player.prototype.update = function() {
         this.animations.stop();
     }
     if (this.cursors.up.isDown && this.body.blocked.down) {
-        this.health -= 1;
+        // this.health -= 1;
         this.body.velocity.y = -600;
     }
 }

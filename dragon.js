@@ -7,6 +7,7 @@ Dragon.prototype.hasSheep = false;
 Dragon.prototype.hasLanded = false;
 Dragon.prototype.dx = 1;
 Dragon.prototype.dy = 1;
+Dragon.prototype.hits = 0;
 function Dragon(game, x, y){
     Phaser.Sprite.call(this, game, x, y, 'dragon');
     this.sheepy = new Sheep(game, x, y);
