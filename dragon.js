@@ -58,7 +58,6 @@ Dragon.prototype.update = function(){
                 this.sheepy.kill();
                 this.kill();
                 numSheep -= 1;
-                console.log('here');
                 if (numSheep == 0){
                     //if there are no more sheep, game over
                     SSSP1.game.state.start("GameOver");

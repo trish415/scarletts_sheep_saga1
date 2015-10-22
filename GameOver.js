@@ -7,6 +7,6 @@ SSSP1.GameOver.prototype = {
         //show nice background
         this.game.stage.backgroundColor = '#000';
         label = this.game.add.text(225, 150, "GAME OVER", {font: '60px Arial', fill: '#fff', align: 'center'});
-        label2 = this.game.add.text(275, 250, "Score:", {font: '40px Arial', fill: '#fff', align: 'center'});
+        label2 = this.game.add.text(300, 250, "Score: " + score, {font: '40px Arial', fill: '#fff', align: 'center'});
     }
 }

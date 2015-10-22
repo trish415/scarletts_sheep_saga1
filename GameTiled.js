@@ -148,7 +148,7 @@ SSSP1.Game.prototype = {
 
         this.scoreText.setText('Points: '+score);
     },
-    
+
     findObjectsByType: function(type, map, layerName) {
         // get objects from tiled
         var result = new Array();
@@ -168,7 +168,6 @@ SSSP1.Game.prototype = {
 
     //when dragon lands, left or right is chosen randomly
     dragonLanding:function(d,p){
-        console.log(d.hasLanded);
         if (d.hasLanded == false){
             d.hasLanded = true;
             d.dy = 0;
