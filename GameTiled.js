@@ -96,7 +96,6 @@ SSSP1.Game.prototype = {
     dragonLanding:function(d,p){
         console.log(d.hasLanded);
         if (d.hasLanded == false){
-            console.log('firstland');
             d.hasLanded = true;
             d.dy = 0;
             var direction = Math.floor(Math.random()*2);
@@ -112,6 +111,8 @@ SSSP1.Game.prototype = {
         if (d.hasSheep == false){
             d.hasSheep = true;
             s.captured = true;
+            // s.dragony = d;
+            d.sheepy = s;
         }
         if(s.captured == true){
             s.x = d.x;

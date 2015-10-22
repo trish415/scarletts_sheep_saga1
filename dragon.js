@@ -9,6 +9,9 @@ Dragon.prototype.dx = 1;
 Dragon.prototype.dy = 1;
 function Dragon(game, x, y){
     Phaser.Sprite.call(this, game, x, y, 'dragon');
+    this.sheepy = new Sheep(game, x, y);
+    this.sheepy.kill();
+    this.boundsCount = 0;
     this.animations.add('right', [0, 1, 2, 3], 10, true);
     this.animations.add('left', [4, 5, 6, 7], 10, true);
     //choose side to enter from
@@ -40,6 +43,13 @@ Dragon.prototype.update = function(){
 
     // reverse direction at game bounds
     if (((this.x + this.dx) >= (this.game.width - 150)) || ((this.x + this.dx) <= 0)){
+        if (this.hasSheep == true){
+            this.boundsCount = this.boundsCount + 1;
+        }
+        if (this.boundsCount == 4){
+            this.sheepy.kill();
+            this.kill();
+        }
         this.dx = this.dx*-1;
     }
     //travel to the landing position
